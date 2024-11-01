@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RS485 Relay Setup</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="testbox">
+      <form action="/save">
+        <div class="banner">
+          <h1>RS485 Relay Setup</h1>
+        </div>
+        <h2>Version %FIRMWARE_VERSION%</h2>
+        <div class="item">
+          <p>ESP IP Settings (leave blank for DHCP)<span class="required">*</span></p>
+          <div class="name-item">
+            <input type="text" name="STATIC_IP" placeholder="IP Address" value="%STATIC-IP%" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/>
+            <input type="text" name="STATIC_SUB" placeholder="Subnet Mask" value="%STATIC-SUB%" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/>
+            <input type="text" name="STATIC_GW" placeholder="Gateway" value="%STATIC-GW%" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/>
+            <input type="text" name="STATIC_DNS" placeholder="DNS" value="%STATIC-DNS%" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/>
+            <input type="number" name="LISTEN_PORT" placeholder="Listen Port" value="%LISTEN_PORT%" min="1025" max="65535"/>
+          </div>
+        </div>
+        <div class="item">
+          <p>RS485 Settings<span class="required">*</span></p>
+          <div class="double-item">
+            <select name="RS485_BAUD" id="RS485_BAUD" required>
+              <option value="">Baud Rate</option>
+              <option value="1200">1200</option>
+              <option value="2400">2400</option>
+              <option value="4800">4800</option>
+              <option value="9600">9600</option>
+              <option value="19200">19200</option>
+              <option value="38400">38400</option>
+              <option value="57600">57600</option>
+              <option value="115200">115200</option>
+            </select>
+            <select name="RS485_OPTIONS" id="RS485_OPTIONS" required>
+              <option value="">Options</option>
+              <option value="SWSERIAL_5N1">SWSERIAL_5N1</option>
+              <option value="SWSERIAL_6N1">SWSERIAL_6N1</option>
+              <option value="SWSERIAL_7N1">SWSERIAL_7N1</option>
+              <option value="SWSERIAL_8N1">SWSERIAL_8N1</option>
+              <option value="SWSERIAL_5N2">SWSERIAL_5N2</option>
+              <option value="SWSERIAL_6N2">SWSERIAL_6N2</option>
+              <option value="SWSERIAL_7N2">SWSERIAL_7N2</option>
+              <option value="SWSERIAL_8N2">SWSERIAL_8N2</option>
+              <option value="SWSERIAL_5E1">SWSERIAL_5E1</option>
+              <option value="SWSERIAL_6E1">SWSERIAL_6E1</option>
+              <option value="SWSERIAL_7E1">SWSERIAL_7E1</option>
+              <option value="SWSERIAL_8E1">SWSERIAL_8E1</option>
+              <option value="SWSERIAL_5E2">SWSERIAL_5E2</option>
+              <option value="SWSERIAL_6E2">SWSERIAL_6E2</option>
+              <option value="SWSERIAL_7E2">SWSERIAL_7E2</option>
+              <option value="SWSERIAL_8E2">SWSERIAL_8E2</option>
+              <option value="SWSERIAL_5O1">SWSERIAL_5O1</option>
+              <option value="SWSERIAL_6O1">SWSERIAL_6O1</option>
+              <option value="SWSERIAL_7O1">SWSERIAL_7O1</option>
+              <option value="SWSERIAL_8O1">SWSERIAL_8O1</option>
+              <option value="SWSERIAL_5O2">SWSERIAL_5O2</option>
+              <option value="SWSERIAL_6O2">SWSERIAL_6O2</option>
+              <option value="SWSERIAL_7O2">SWSERIAL_7O2</option>
+              <option value="SWSERIAL_8O2">SWSERIAL_8O2</option>
+            </select>
+          </div>
+        </div>
+        <div class="btn-block">
+          <button type="submit">Save and reboot</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      function selectValue(dropdownName, value) {
+        var mySelect = document.getElementById(dropdownName);
+        for(var i, j = 0; i = mySelect.options[j]; j++) {
+            if(i.value == value) {
+                mySelect.selectedIndex = j;
+                break;
+            }
+        }
+      }
+
+      /* %JAVASCRIPT-DEFAULTS% */
+
+    </script>
+  </body>
+</html>
