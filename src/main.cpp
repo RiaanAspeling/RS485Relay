@@ -270,14 +270,14 @@ void readRS485() {
   String rs485Data = "";
   while (RS485Port.available() > 0) {
     rs485Data += (char)RS485Port.read();
-    BlinkLED(10, 2);
+    BlinkLED(5, 1);
   }
   if (rs485Data.length() > 0) {
     if (wifiClientRS485 && wifiClientRS485->connected()) {
       wifiClientRS485->write(rs485Data.c_str(), rs485Data.length());
     }
     DebugLog("RS485=>PORT: " + rs485Data);
-    WriteJSONToMonitor("rs485", "RS485=>PORT: " + rs485Data);
+    WriteJSONToMonitor("rs485", "485 => " + rs485Data);
   }
 }
 
@@ -287,15 +287,15 @@ void onClientData(void *arg, AsyncClient *tcpClient, void *data, size_t len) {
     RS485Port.write((uint8_t*)data, len); // Send the data from the PC to RS485
     String clientData((char*)data, len);
     DebugLog("PORT=>RS485: " + clientData);
-    WriteJSONToMonitor("port", "PORT=>RS485: " + clientData);
-    BlinkLED(10, 5);
+    WriteJSONToMonitor("port", "EXT => " + clientData);
+    BlinkLED(5, 1);
   }
 }
 
 // Modified to handle WebSocket events
 void onWsEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len) {
     if (type == WS_EVT_CONNECT) {
-        WriteJSONToMonitor("port", "Client connected: " + client->remoteIP().toString());
+        WriteJSONToMonitor("port", "Web client connected: " + client->remoteIP().toString());
     }
 }
 
