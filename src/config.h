@@ -5,7 +5,7 @@
 #define JSON_CONFIG_FILE "/config.json"
 #define JSON_STATICIP_FILE "/staticip.json"
 
-#define FIRMWARE_VERSION 0.2
+#define FIRMWARE_VERSION 0.3
 
 IPAddress STATIC_IP = IPAddress(0,0,0,0);
 IPAddress STATIC_SUB = IPAddress(0,0,0,0);
